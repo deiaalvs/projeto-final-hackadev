@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.product-slider {
+    height: 500px;
+    width: 68%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.slider {
+    display: flex;
+    flex-direction: row;
+}
+
+.product-item {
+    margin: 20px 10px 0px 10px;
+}

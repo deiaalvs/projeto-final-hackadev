@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import "../styles/product-details.css";
+import ProductSlider from '../components/Product-Slider/Product-Slider'
 
-const ProductDetails = ({ product, addToCart, quanity }) => {
+const ProductDetails = ({ product, addToCart }) => {
   return (
     <section className="section product-detail">
       <div className="details container-b">
@@ -64,6 +65,7 @@ const ProductDetails = ({ product, addToCart, quanity }) => {
           </p>
         </div>
       </div>
+      <ProductSlider />
     </section>
   );
 };
