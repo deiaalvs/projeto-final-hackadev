@@ -1,14 +1,12 @@
-import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import '../../styles/product-slider.css';
 import '../../styles/product-list.css';
 
-const ProductSlider = ({category}) => {
+const ProductSlider = ({ category, productId }) => {
     const productsPromoted = []
-    let { productId } = useParams();
     const products = useSelector((state) => state.product.products);
-    const productListToPromote = [...productsPromoted, products.filter((p) => p.id_product !== parseInt(productId) & p.product_hasdiscount === true & p.product_category === category)];
+    const productListToPromote = [...productsPromoted, products.filter((p) => p.id_product !== productId & p.product_hasdiscount === true & p.product_category === category)];
     const product = productListToPromote[0]
     const productSlider = [...product]
 

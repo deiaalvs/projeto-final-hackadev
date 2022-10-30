@@ -65,7 +65,7 @@ const ProductDetails = ({ product, addToCart }) => {
           </p>
         </div>
       </div>
-      <ProductSlider category={product.product_category}/>
+      <ProductSlider category={product.product_category} productId={product.id_product}/>
     </section>
   );
 };
