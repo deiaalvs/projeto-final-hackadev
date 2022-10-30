@@ -1,21 +1,23 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import '../../styles/product-slider.css';
 import '../../styles/product-list.css';
 
-const ProductSlider = () => {
-    const [products, setProductSlider] = useState([])
-    useEffect(() => {
-        fetch('https://api-ecommerce-hackadev.herokuapp.com/product_all')
-        .then((res) => res.json())
-        .then(setProductSlider)
-    },[])
+const ProductSlider = ({category}) => {
+    const productsPromoted = []
+    let { productId } = useParams();
+    const products = useSelector((state) => state.product.products);
+    const productListToPromote = [...productsPromoted, products.filter((p) => p.id_product !== parseInt(productId) & p.product_hasdiscount === true & p.product_category === category)];
+    const product = productListToPromote[0]
+    const productSlider = [...product]
+
     return (
         <div className='product-slider'>
             <h4>Aproveite essas ofertas também!</h4>
             <div className='slider'>
-                {products.map((product) => {
-                    const {id_product, product_percent, product_name, product_price} = product
+                {productSlider.map((productItem) => {
+                    const {id_product, product_percent, product_name, product_price} = productItem
                     return (
                         <div className="product-item">
                             <div className="overlay">
