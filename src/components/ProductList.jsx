@@ -1,4 +1,4 @@
-import { useState, Component } from 'react';
+import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/product-list.css';
 import { fetchProducts } from "../actions/index";
@@ -96,7 +96,7 @@ class ProductList extends Component {
                   <i className="bx bx-heart"></i>
                 </li>
                 <li>
-                  <i className="bx bx-search"></i>
+                  <Link to={`/product/${product.id_product}`}><i className="bx bx-search"></i></Link>
                 </li>
                 <li>
                   <i
