@@ -1,19 +1,34 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useRef } from 'react'
 import '../../styles/product-slider.css';
 import '../../styles/product-list.css';
 
 const ProductSlider = ({ category, productId }) => {
+    const slider = useRef(null)
     const productsPromoted = []
     const products = useSelector((state) => state.product.products);
     const productListToPromote = [...productsPromoted, products.filter((p) => p.id_product !== productId & p.product_hasdiscount === true & p.product_category === category)];
     const product = productListToPromote[0]
     const productSlider = [...product]
 
+    function handleLeftClick (e) {
+        e.preventDefault();
+        slider.current.scrollLeft -= slider.current.offsetWidth
+        console.log(slider.current.offsetWidth)
+    }
+
+    function handleRightClick (e) {
+        e.preventDefault();
+        slider.current.scrollLeft += slider.current.offsetWidth
+        console.log(slider.current.offsetWidth)
+    }
+
     return (
         <div className='product-slider'>
             <h4>Aproveite essas ofertas também!</h4>
-            <div className='slider'>
+            <div className='slider' ref={slider}>
+
                 {productSlider.map((productItem) => {
                     const {id_product, product_percent, product_name, product_price} = productItem
                     return (
@@ -48,7 +63,11 @@ const ProductSlider = ({ category, productId }) => {
                                 </li>
                             </ul>
                         </div>
-                    )})}
+                )})}
+            </div>
+            <div className="buttons">
+                <button onClick={handleLeftClick}><img src="/images/chevron.png" alt="scroll left" /></button>
+                <button onClick={handleRightClick}><img src="/images/chevron.png" alt="scroll right" /></button>
             </div>
         </div>
 

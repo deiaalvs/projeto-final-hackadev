@@ -14,8 +14,37 @@
 .slider {
     display: flex;
     flex-direction: row;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    align-items: center;
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
 }
 
 .product-item {
     margin: 20px 10px 0px 10px;
+    flex: none;
 }
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.buttons button {
+    border: none;
+    background-color: transparent;
+}
+
+.buttons button:first-child {
+    transform: rotateY(-180deg);
+}
+
+@media only screen and (max-width: 567px) {
+    .buttons {
+        display: none;
+    }
+  }
